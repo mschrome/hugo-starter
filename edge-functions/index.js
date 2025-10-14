@@ -11,7 +11,7 @@ export async function onRequest(context) {
   try {
     const url = new URL(request.url);
     
-    const indexUrl = new URL('/index.html', url.origin);
+    const indexUrl = new URL('https://hugo-starter-zelwvqsd.edgeone.run/index.html');
     const response = await fetch(indexUrl.toString());
     
     if (response.ok) {
