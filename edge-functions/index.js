@@ -11,10 +11,10 @@ export async function onRequest(context) {
   try {
     const url = new URL(request.url);
     
-    const indexUrl = new URL('https://hugo-starter-zelwvqsd.edgeone.run/index.html');
+    const indexUrl = new URL('/index.html', url.origin);
     const response = await fetch(indexUrl.toString());
     
-    if (response.ok) {
+    if (response.statusText === 'OK') {
       // 返回首页内容
       const newResponse = new Response(response.body, {
         status: response.status,
