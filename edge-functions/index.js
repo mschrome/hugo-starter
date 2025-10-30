@@ -1,12 +1,12 @@
 /**
- * EdgeOne Edge Function - Catch-all 路由处理
- * 处理所有非根路径（/aaa, /bbb 等），返回 Hugo 静态站点首页
+ * EdgeOne Edge Function - 根路径处理
+ * 只处理根路径 /，返回 Hugo 静态站点首页
  * 
- * 注意：[[id]] 不会匹配根路径 /，根路径由 index.js 处理
+ * 其他路径由 [[id]].js 处理
  */
 
 export async function onRequest(context) {
-  const { request, params } = context;
+  const { request } = context;
   
   try {
     const url = new URL(request.url);
@@ -19,9 +19,8 @@ export async function onRequest(context) {
     if (response.ok) {
       // 创建新的 Headers 对象，避免只读问题
       const newHeaders = new Headers(response.headers);
-      newHeaders.set('x-edge-function', 'catch-all');
+      newHeaders.set('x-edge-function', 'root');
       newHeaders.set('x-powered-by', 'EdgeOne Pages');
-      newHeaders.set('x-matched-path', url.pathname);
       
       // 返回首页内容
       return new Response(response.body, {
@@ -36,18 +35,18 @@ export async function onRequest(context) {
       status: 404,
       headers: {
         'content-type': 'text/plain',
-        'x-edge-function': 'catch-all',
+        'x-edge-function': 'root',
         'x-powered-by': 'EdgeOne Pages'
       }
     });
     
   } catch (error) {
-    console.error('Error in catch-all function:', error);
+    console.error('Error in root function:', error);
     return new Response('Internal Server Error', { 
       status: 500,
       headers: {
         'content-type': 'text/plain',
-        'x-edge-function': 'catch-all',
+        'x-edge-function': 'root',
         'x-powered-by': 'EdgeOne Pages'
       }
     });
