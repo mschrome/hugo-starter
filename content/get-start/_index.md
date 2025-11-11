@@ -4,7 +4,7 @@ date = '2025-06-23T11:06:56+08:00'
 draft = false
 +++
 
-# Getting Started with Hugo Version 002
+# Getting Started with Hugo Version 003
 
 Welcome to the Hugo getting started guide. Here you'll find everything you need to begin your journey with Hugo, the fast and flexible static site generator.
 
