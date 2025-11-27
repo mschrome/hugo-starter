@@ -1,6 +1,6 @@
 baseURL = '/'
 languageCode = 'en-us'
-title = 'Hugo Template Version 001 preview'
+title = 'Hugo Template Version 003 preview'
 theme = 'ananke'
 
 # Theme parameters
